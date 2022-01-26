@@ -6,9 +6,15 @@ public class App
     {
         Canvas canvas = new Canvas();
 
-        Rectangle s1 = new Rectangle();
-        Circle s2 = new Circle();
-        Triangle s3 = new Triangle();
+        Rectangle s1 = new Rectangle(new ShapeDrawer());
+        Circle s2 = new Circle(new ShapeDrawer());
+        Triangle s3 = new Triangle(new ShapeDrawer());
+
+        canvas.addShape(s1);
+        canvas.addShape(s2);
+        canvas.addShape(s3);
+
+        canvas.draw();
 
         Group g1 = new Group();
         Group g2 = new Group();
@@ -17,13 +23,6 @@ public class App
         g1.addElement(s2);
 
         g2.addElement(s3);
-        g2.addElement(g1);
-
-        canvas.addShape(s1);
-        canvas.addShape(s2);
-        canvas.addShape(s3);
-
-        canvas.draw();
 
         System.out.println(g1);
         System.out.println(g2);

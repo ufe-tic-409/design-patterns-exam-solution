@@ -1,24 +1,18 @@
 package io.gawish;
 
-import java.util.ArrayList;
-import java.util.List;
-
-public abstract class Shape implements Element, Subject {
+public abstract class Shape {
     private int width;
     private int height;
+    private ShapeDrawer shapeDrawer;
 
-    private List<Observer> obervers = new ArrayList<>();
-
-    public Shape(int width, int height) {
+    public Shape(int width, int height, ShapeDrawer shapeDrawer) {
         this.width = width;
         this.height = height;
-
-        this.obervers.add(ActivitySystem.getInstance());
-        this.sendNotifications("SHAPE_CREATED");
+        this.shapeDrawer = shapeDrawer;
     }
 
     public void draw() {
-        ShapeDrawer.getInstance().draw(this);
+        this.shapeDrawer.draw(this);
     }
 
     @Override
@@ -39,21 +33,9 @@ public abstract class Shape implements Element, Subject {
 
     public void setWidth(int width) {
         this.width = width;
-        this.sendNotifications("SHAPE_SIZE_CHANGED");
     }
 
     public void setHeight(int height) {
         this.height = height;
-        this.sendNotifications("SHAPE_SIZE_CHANGED");
-    }
-
-    public void addObserver(Observer observer) {
-        this.obervers.add(observer);
-    }
-
-    public void sendNotifications(String notification) {
-        for (Observer o : this.obervers) {
-            o.onNotify(notification);
-        }
     }
 }

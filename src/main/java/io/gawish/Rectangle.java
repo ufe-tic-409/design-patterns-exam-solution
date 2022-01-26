@@ -1,7 +1,7 @@
 package io.gawish;
 
 public class Rectangle extends Shape {
-    public Rectangle() {
-        super(5, 5);
+    public Rectangle(ShapeDrawer shapeDrawer) {
+        super(5, 5, shapeDrawer);
     }
 }
